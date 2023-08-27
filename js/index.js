@@ -13,13 +13,14 @@ const displayPhones = (phones) => {
   // step1 -> get the div
   const phoneContainer = document.getElementById("phone-container");
   phones.forEach((phone) => {
+    console.log(phone);
     // step 2 - Create a div
     const div = document.createElement("div");
-    div.classList = `card w-96 bg-base-100 shadow-xl`;
+    div.classList = `card w-96 bg-base-100 shadow-xl m-4`;
     div.innerHTML = `
-    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+    <figure><img src=${phone.image} alt="Shoes" /></figure>
     <div className="card-body">
-      <h2 className="card-title">Shoes!</h2>
+      <h2 className="card-title">${phone.phone_name}!</h2>
       <p>If a dog chews shoes whose shoes does he choose?</p>
       <div className="card-actions justify-end">
         <button className="btn btn-primary">Buy Now</button>
