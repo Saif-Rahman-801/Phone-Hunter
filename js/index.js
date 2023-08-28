@@ -26,6 +26,7 @@ const displayPhones = (phones, isShowAll) => {
   phones.forEach((phone) => {
     // console.log(phone);
     // step 2 - Create a div
+    const id = phone.slug;
     const div = document.createElement("div");
     div.classList = `card p-4 rounded-sm bg-base-100 shadow-xl m-4`;
     div.innerHTML = `
@@ -33,8 +34,8 @@ const displayPhones = (phones, isShowAll) => {
     <div class="card-body">
       <h2 class="card-title">${phone.phone_name}!</h2>
       <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
+      <div class="card-actions justify-center">
+        <button onclick="handleShowDetails('${id}')" class="btn btn-primary rounded-lg">Show details</button>
       </div>
     </div>
     `;
@@ -55,11 +56,19 @@ const toggleLoadingSpinner = (isLoading) => {
   const loadingSpinner = document.getElementById("spinner");
   loadingSpinner.classList.remove("hidden");
   if (isLoading) {
-    console.log("showing");
     loadingSpinner.classList.remove("hidden");
   } else {
     loadingSpinner.classList.add("hidden");
   }
+};
+
+const handleShowDetails = async (id) => {
+  console.log("clicked", id);
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phone/${id}`
+  );
+  const data = res.json();
+  console.log(data);
 };
 
 // handle showAll
