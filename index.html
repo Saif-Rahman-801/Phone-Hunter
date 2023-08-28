@@ -15,9 +15,25 @@
     <header>
       <h2 class="">Hello</h2>
     </header>
-    <main>
-      <section class="container mx-auto">
-        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+    <main class="container mx-auto">
+      <!-- search -->
+      <section class="bg-gray-700 p-4 m-4 rounded-lg flex items-center gap-3">
+        <input
+          id="search-field"
+          type="text"
+          placeholder="search..."
+          class="input input-bordered w-full rounded-xl max-w-xs"
+        />
+        <button class="rounded-xl btn btn-accent" onclick="handleSearch()">
+          Search
+        </button>
+      </section>
+      <!--search result  -->
+      <section>
+        <div
+          id="phone-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        ></div>
       </section>
     </main>
     <footer></footer>
