@@ -1,4 +1,4 @@
-console.log("Hello World");
+// console.log("Hello World");
 const loadPhone = async (searchField, isShowAll) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchField}`
@@ -35,7 +35,7 @@ const displayPhones = (phones, isShowAll) => {
       <h2 class="card-title">${phone.phone_name}!</h2>
       <p>If a dog chews shoes whose shoes does he choose?</p>
       <div class="card-actions justify-center">
-        <button onclick="handleShowDetails('${id}')" class="btn btn-primary rounded-lg">Show details</button>
+        <button onclick="handleShowDetails('${id}'); " class="btn btn-primary rounded-lg">Show details</button>
       </div>
     </div>
     `;
@@ -63,12 +63,17 @@ const toggleLoadingSpinner = (isLoading) => {
 };
 
 const handleShowDetails = async (id) => {
-  console.log("clicked", id);
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/phone/${id}`
-  );
-  const data = res.json();
-  console.log(data);
+  // console.log("clicked", id);
+  fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    .then((res) => res.json())
+    .then((data) => showPhoneDetails(data.data));
+};
+
+const showPhoneDetails = (phone) => {
+  console.log(phone);
+  const phoneName = document.getElementById("phone-name");
+  phoneName.innerText = phone.name;
+  show_details_modal.showModal();
 };
 
 // handle showAll
